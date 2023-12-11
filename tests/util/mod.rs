@@ -149,7 +149,7 @@ pub fn expect_events(poll: &mut Poll, events: &mut Events, mut expected: Vec<Exp
                 expected.swap_remove(index);
             } else {
                 // Must accept sporadic events.
-                warn!("got unexpected event: {:?}", event);
+                log::warn!("got unexpected event: {:?}", event);
             }
         }
 
@@ -170,7 +170,7 @@ pub fn expect_no_events(poll: &mut Poll, events: &mut Events) {
         .expect("unable to poll");
     if !events.is_empty() {
         for event in events.iter() {
-            error!("unexpected event: {:?}", event);
+            log::error!("unexpected event: {:?}", event);
         }
         panic!("received events, but didn't expect any, see above");
     }
